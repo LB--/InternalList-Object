@@ -1,0 +1,16 @@
+EXPORTS
+	; edittime & runtime
+	GetInfos
+	GetRunObjectInfos
+
+	; runtime only
+	GetRunObjectDataSize
+	CreateRunObject
+	DestroyRunObject
+	HandleRunObject
+	PauseRunObject
+	ContinueRunObject
+	SaveRunObject
+	LoadRunObject
+	StartApp
+	EndApp
