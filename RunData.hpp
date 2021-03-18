@@ -26,25 +26,30 @@ struct RunData final
 	{
 		return data().lists[*current_list_name];
 	}
-	auto current_optional() noexcept
+	auto list_optional(lSDK::string_view_t const name) noexcept
 	-> Data::list_t * //non-owning, optional
 	{
 		if(global_data_name)
 		{
 			if(auto const it = Data::global.find(*global_data_name); it != end(Data::global))
 			{
-				if(auto const jt = it->second.lists.find(*current_list_name); jt != end(it->second.lists))
+				if(auto const jt = it->second.lists.find(name); jt != end(it->second.lists))
 				{
 					return std::addressof(jt->second);
 				}
 			}
 			return nullptr;
 		}
-		if(auto const it = local_data->lists.find(*current_list_name); it != end(local_data->lists))
+		if(auto const it = local_data->lists.find(name); it != end(local_data->lists))
 		{
 			return std::addressof(it->second);
 		}
 		return nullptr;
+	}
+	auto current_optional() noexcept
+	-> Data::list_t * //non-owning, optional
+	{
+		return list_optional(*current_list_name);
 	}
 
 	RunData() = delete;

@@ -327,7 +327,7 @@ auto FUSION_API action_copy_items_from_list(RunData *const run_data, ac_param_t 
 
 	handle_exceptions(run_data, &action_copy_items_from_list, [&]
 	{
-		auto const *const list_from_ptr = run_data->current_optional();
+		auto const *const list_from_ptr = run_data->list_optional(list_from_name);
 		if(!list_from_ptr)
 		{
 			return;
